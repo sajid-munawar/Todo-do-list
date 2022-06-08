@@ -9,29 +9,6 @@ const todoGenerate = ({ description }) => `
   <i class="fa-solid fa-ellipsis-vertical"></i>
   <i class="fa-solid fa-trash-can"></i></div>`;
 
-// const changeTask = (todoContainer, todo) => {
-//   const editInput = document.createElement('input');
-//   editInput.type = 'text';
-//   editInput.className = 'editInput';
-//   editInput.value = todo.textContent;
-//   todoContainer.replaceChild(editInput, todo);
-//   editInput.addEventListener('keypress', (e) => {
-//     if (e.key === 'Enter') {
-//       const todoContainers = document.querySelectorAll('.todo-item');
-//       const localData = JSON.parse(localStorage.getItem('todos'));
-//       for (let i = 0; i < todoContainers.length; i += 1) {
-//         if (todoContainers[i].classList.contains('edit-clicked')) {
-//           localData[i].description = editInput.value;
-//           localStorage.setItem('todos', JSON.stringify(localData));
-//         }
-//       }
-//       editInput.parentElement.classList.remove('edit-clicked');
-//       todoContainer.replaceChild(todo, editInput);
-//       todo.textContent = editInput.value;
-//     }
-//   });
-// };
-
 
 export const updateTodo = () => {
   const todosFromLocalStorage = JSON.parse(localStorage.getItem('todos'));
@@ -58,36 +35,25 @@ export const updateTodo = () => {
     })
     span.addEventListener('keypress', (e) => {
       if (e.key === "Enter") {
-        // console.log(e.target.textContent);
         e.target.parentElement.classList.add("edited");
       }
             const localData = JSON.parse(localStorage.getItem('todos'));
 
-      // const todoContainers = document.querySelectorAll('.todo-item');
       for (let i = 0; i < spans.length; i += 1) {
         if (spans[i].parentElement.classList.contains("edited")) {
           console.log(e.target.textContent);
           localData[i].description = e.target.textContent;
           localStorage.setItem('todos', JSON.stringify(localData));
-      // e.target.contenteditable = "false";
 
       window.getSelection().removeAllRanges();
         }
       }
       e.target.parentElement.classList.remove('edited');
       e.target.classList.add('focus')
-      // updateTodo();
     })
 
   })
-  // const editIcons = document.querySelectorAll('.fa-ellipsis-vertical');
-  // editIcons.forEach((c) => {
-  //   c.addEventListener('click', () => {
-  //     const todoContainer = c.parentElement;
-  //     todoContainer.classList.add('edit-clicked');
-  //     changeTask(todoContainer, c.previousElementSibling);
-  //   });
-  // });
+
 };
 updateTodo();
 

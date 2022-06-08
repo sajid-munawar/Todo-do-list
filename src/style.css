@@ -72,3 +72,7 @@ span {
 .trash {
   display: block;
 }
+
+.focus:focus {
+  outline: none;
+}

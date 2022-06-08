@@ -1,13 +1,25 @@
 import _ from "lodash";
 import "./style.css";
 
-function component() {
-  const element = document.createElement("div");
+const form = document.querySelector("form");
+const todos = [
+  {
+    description: "Coding task",
+    completed: false,
+    index: 0,
+  },
+  {
+    description: "Lesson",
+    completed: true,
+    index: 1,
+  },
+  {
+    description: "review",
+    completed: false,
+    index: 2,
+  },
+];
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(["Hello", "webpack  sd"], " ");
-
-  return element;
-}
-
-document.body.appendChild(component());
+todos.forEach(todo => {
+  return (form.innerHTML += `<input type="checkbox"><span> ${todo.description} </span>`);
+})

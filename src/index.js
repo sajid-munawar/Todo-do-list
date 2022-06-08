@@ -1,13 +1,27 @@
-import _ from "lodash";
-import "./style.css";
+import './style.css';
 
-function component() {
-  const element = document.createElement("div");
+const dynamicTodos = document.querySelector('.dynamic-todos');
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(["Hello", "webpack  sd"], " ");
+const todos = [
+  {
+    description: 'Coding task',
+    completed: false,
+    index: 0,
+  },
+  {
+    description: 'Lesson',
+    completed: true,
+    index: 1,
+  },
+  {
+    description: 'review',
+    completed: false,
+    index: 2,
+  },
+];
 
-  return element;
-}
+const todoGenerate = ({ description }) => `
+   <div class="todo-item">
+  <input type="checkbox"><span> ${description} </span></div>`;
 
-document.body.appendChild(component());
+dynamicTodos.innerHTML += todos.map((todo) => todoGenerate(todo)).join('');

@@ -28,8 +28,41 @@ export const updateTodo = () => {
           c.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle('trash')
         })
     })
+
+    const editIcons = document.querySelectorAll(".fa-ellipsis-vertical");
+    editIcons.forEach(c => {
+        c.addEventListener('click', () => {
+            const todoContainer = c.parentElement
+            todoContainer.classList.add("edit-clicked");
+            changeTask(todoContainer,c.previousElementSibling);
+        })
+    })
 };
 updateTodo();
+
+const changeTask = (todoContainer,todo) => {
+    const editInput = document.createElement('input')
+    editInput.type = 'text'
+    editInput.className = 'editInput'
+    editInput.value = todo.textContent
+    todoContainer.replaceChild(editInput, todo)
+    editInput.addEventListener('keypress', e => {
+        if (e.key === 'Enter') {
+            const todoContainers = document.querySelectorAll('.todo-item')
+            const localData = JSON.parse(localStorage.getItem('todos'))
+            for (let i = 0; i < todoContainers.length; i += 1){
+                if (todoContainers[i].classList.contains('edit-clicked')) {
+                    localData[i].description = editInput.value
+                    localStorage.setItem('todos',JSON.stringify(localData))
+                }
+            }
+            editInput.parentElement.classList.remove('edit-clicked')
+            todoContainer.replaceChild(todo, editInput);
+            todo.textContent=editInput.value
+
+        }
+    })
+}
 
 export const addTodo = () => {
   if (form.add.value.trim()) {

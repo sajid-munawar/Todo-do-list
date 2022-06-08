@@ -1,53 +1,48 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
-    background: rgba(0,0,0,0.1);
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .container {
-    background: #fff;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    width: 400px;
+  background: #fff;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  width: 400px;
 }
 
 h1 {
-    padding: 2%;
-    border-bottom: 1px solid lightgray;
-    margin: 0;
-
+  padding: 2%;
+  border-bottom: 1px solid lightgray;
+  margin: 0;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #add-task {
-    border: none;
-        padding: 2%;
-
+  border: none;
+  padding: 2%;
 }
 
 input {
-    border-bottom: 1px solid lightgray;
-
+  border-bottom: 1px solid lightgray;
 }
 
 .todo-item {
-    padding: 2%;
-    border-top: 1px solid lightgray;
-
+  padding: 2%;
+  border-top: 1px solid lightgray;
 }
 
 .clear {
-    border: 1px solid lightgray;
-    padding: 2%;
-    font-size: 0.9rem;
-
+  border: 1px solid lightgray;
+  padding: 2%;
+  font-size: 0.9rem;
 }

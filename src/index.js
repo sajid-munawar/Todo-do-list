@@ -1,29 +1,27 @@
-import _ from "lodash";
-import "./style.css";
+import './style.css';
 
-const form = document.querySelector("form");
-const dynamicTodos = document.querySelector(".dynamic-todos");
+const dynamicTodos = document.querySelector('.dynamic-todos');
 
 const todos = [
   {
-    description: "Coding task",
+    description: 'Coding task',
     completed: false,
     index: 0,
   },
   {
-    description: "Lesson",
+    description: 'Lesson',
     completed: true,
     index: 1,
   },
   {
-    description: "review",
+    description: 'review',
     completed: false,
     index: 2,
   },
 ];
 
-todos.forEach(todo => {
-  return (dynamicTodos.innerHTML += `
+const todoGenerate = ({ description }) => `
    <div class="todo-item">
-  <input type="checkbox"><span> ${todo.description} </span></div>`);
-})
+  <input type="checkbox"><span> ${description} </span></div>`;
+
+dynamicTodos.innerHTML += todos.map((todo) => todoGenerate(todo)).join('');

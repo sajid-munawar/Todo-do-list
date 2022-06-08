@@ -2,6 +2,8 @@ import _ from "lodash";
 import "./style.css";
 
 const form = document.querySelector("form");
+const dynamicTodos = document.querySelector(".dynamic-todos");
+
 const todos = [
   {
     description: "Coding task",
@@ -21,5 +23,7 @@ const todos = [
 ];
 
 todos.forEach(todo => {
-  return (form.innerHTML += `<input type="checkbox"><span> ${todo.description} </span>`);
+  return (dynamicTodos.innerHTML += `
+   <div class="todo-item">
+  <input type="checkbox"><span> ${todo.description} </span></div>`);
 })

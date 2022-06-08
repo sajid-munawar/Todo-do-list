@@ -22,7 +22,7 @@ To get a local copy up and running follow these simple example steps.
 
 ## Live Demo
 
-[Awesome Books Live](https://sajid-munawar.github.io/Todo-do-list/)
+[Todo Live](https://sajid-munawar.github.io/Todo-do-list/)
 
 ## Author
 

@@ -55,6 +55,7 @@ span {
 
 .fa-trash-can {
   display: none;
+  cursor: pointer;
 }
 
 .checked {

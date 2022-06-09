@@ -2,7 +2,7 @@ const form = document.querySelector('form');
 const dynamicTodos = document.querySelector('.dynamic-todos');
 
 export const todos = [];
-const todoGenerate = ({ description, index }) => `
+export const todoGenerate = ({ description, index }) => `
    <div class="todo-item" id=${index}>
   <input  type="checkbox" class='checkbox'><span contenteditable="true"> ${description} </span>
   <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -109,3 +109,5 @@ export const addTodo = () => {
     }
   }
 };
+
+export default updateTodo

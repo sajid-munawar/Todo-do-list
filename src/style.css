@@ -59,6 +59,7 @@ span {
 
 .checked {
   background: rgb(250 255 33 / 33%);
+  text-decoration: line-through;
 }
 
 .checkTodo {

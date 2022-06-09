@@ -77,3 +77,11 @@ span {
 .focus:focus {
   outline: none;
 }
+
+.clear {
+  cursor: pointer;
+}
+
+.checkbox {
+  cursor: pointer;
+}

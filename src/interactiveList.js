@@ -1,22 +1,32 @@
-export const checkboxs = document.querySelectorAll('.checkbox')
+const container = document.querySelector('.dynamic-todos');
 
-const localData = JSON.parse(localStorage.getItem('todos'))
+container.addEventListener('click', (e) => {
+  if (e.target.classList.contains('checkbox')) {
+    const box = e.target;
+    box.addEventListener('change', (e) => {
+      const localData = JSON.parse(localStorage.getItem('todos'));
+      const { id } = e.target.parentElement;
+      if (e.target.parentElement.classList.contains('checked')) {
+        localData[id].completed = true;
+        localStorage.setItem('todos', JSON.stringify(localData));
+      } else if (!e.target.parentElement.classList.contains('checked')) {
+        localData[id].completed = false;
+        localStorage.setItem('todos', JSON.stringify(localData));
+      }
+    });
+  }
+});
 
+// export const checkboxs = document.querySelectorAll(".checkbox");
 
-checkboxs.forEach(c => {
-    c.addEventListener('change', (e) => {
-        let id = e.target.parentElement.id;
-        if (e.target.parentElement.classList.contains('checked')) {
-            localData[id].completed = true;
-            localStorage.setItem('todos',JSON.stringify(localData))
-        } else 
-            if (!e.target.parentElement.classList.contains('checked')) {
-                  localData[id].completed = false;
-                  localStorage.setItem("todos", JSON.stringify(localData));
-            }
-    })
-})
+// checkboxs.forEach((c) => {
+//   c.
+// });
 
-export const clearAll = () => {
-    
-}
+const clearAll = () => {
+  let localData = JSON.parse(localStorage.getItem('todos'));
+  localData = localData.filter((d) => d.completed === false);
+  localStorage.setItem('todos', JSON.stringify(localData));
+};
+
+export default clearAll;

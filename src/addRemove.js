@@ -60,42 +60,24 @@ export const updateTodo = () => {
     trashs.forEach((trash) => {
       trash.addEventListener('click', (e) => {
         e.preventDefault();
-        let dindex= +e.target.parentElement.id
-        console.log(dindex);
+        const dindex = +e.target.parentElement.id;
         dynamicTodos.removeChild(e.target.parentElement);
         const localData = JSON.parse(localStorage.getItem('todos'));
-        let localDataArr = Array.from(localData);
-        let count = -1;
-        console.log(localDataArr);
-        for (let b = 0; b < localDataArr.length; b++){
+        const localDataArr = Array.from(localData);
+        for (let b = 0; b < localDataArr.length; b += 1) {
           if (localDataArr[b].index === dindex) {
-            localDataArr.splice(b,1)
-            console.log(localDataArr);
+            localDataArr.splice(b, 1);
           }
         }
-        // for (let i = 0; i < localDataArr.length; i += 1) {
-          // console.log('a');
-          // if (localDataArr[i].index === dindex) {
-          //   localDataArr.splice(i, 1);
-          //   console.log(localDataArr);
-          // }
-                  for (let i = 0; i < localDataArr.length; i += 1) {
-                    localDataArr[i].index = i;
-                  }
-                  localStorage.setItem('todos', JSON.stringify(localDataArr));
-                      const domItems = document.querySelectorAll(".todo-item");
-                      for (let i = 0; i < domItems.length; i += 1) {
-                        domItems[i].id = i;
-                      }
-        // }
-        // localDataArr = localDataArr.map(i => {
-          //   return {
-            //     description: i.description,
-            //     completed: i.completed,
-            //     index: count+=1 ,
-            //   };
-            // });
 
+        for (let i = 0; i < localDataArr.length; i += 1) {
+          localDataArr[i].index = i;
+        }
+        localStorage.setItem('todos', JSON.stringify(localDataArr));
+        const domItems = document.querySelectorAll('.todo-item');
+        for (let i = 0; i < domItems.length; i += 1) {
+          domItems[i].id = i;
+        }
 
         e.stopPropagation();
       });

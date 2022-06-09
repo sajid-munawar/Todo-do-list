@@ -60,8 +60,16 @@ export const updateTodo = () => {
     const trashs = document.querySelectorAll(".fa-trash-can");
     trashs.forEach((trash,index) => {
       trash.addEventListener('click', (e) => {
-        console.log('t',index);
         dynamicTodos.removeChild(e.target.parentElement)
+        const localData = JSON.parse(localStorage.getItem('todos'))
+        const localDataArr = Array.from(localData)
+        for (let i = 0; i < localData.length; i += 1){
+          // console.log(localDataArr[i].index,+e.target.parentElement.id);
+          if (localData[i].index === +e.target.parentElement.id) {
+            localDataArr.splice(i, 1)
+            localStorage.setItem('todos',JSON.stringify(localDataArr))
+          }
+        }
       })
     })
   }

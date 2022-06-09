@@ -37,6 +37,8 @@ input {
 }
 
 .todo-item {
+  display: flex;
+  gap: 2%;
   padding: 2%;
   border-top: 1px solid lightgray;
 }
@@ -45,4 +47,32 @@ input {
   border: 1px solid lightgray;
   padding: 2%;
   font-size: 0.9rem;
+}
+
+span {
+  flex: 1;
+}
+
+.fa-trash-can {
+  display: none;
+}
+
+.checked {
+  background: rgb(250 255 33 / 33%);
+}
+
+.checkTodo {
+  text-decoration: line-through;
+}
+
+.doticon {
+  display: none;
+}
+
+.trash {
+  display: block;
+}
+
+.focus:focus {
+  outline: none;
 }

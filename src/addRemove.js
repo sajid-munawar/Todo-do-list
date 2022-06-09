@@ -56,7 +56,6 @@ export const updateTodo = () => {
   editDesc();
   // Function to Delete todo
   const delTodo = () => {
-    console.log(todos);
     const trashs = document.querySelectorAll(".fa-trash-can");
     trashs.forEach((trash,index) => {
       trash.addEventListener('click', (e) => {
@@ -68,11 +67,11 @@ export const updateTodo = () => {
           if (localData[i].index === +e.target.parentElement.id) {
             localDataArr.splice(i, 1)
             // console.log(domItems,localDataArr);
-          }
-            for (let i = 0; i < localDataArr.length; i += 1){
-              const domItems = document.querySelectorAll(".todo-item");
-              localDataArr[i].index = i;
-              domItems[i].id=i
+            // for (let i = 0; i < localDataArr.length; i += 1){
+            //   const domItems = document.querySelectorAll(".todo-item");
+            //   localDataArr[i].index = i;
+            //   domItems[i].id=i
+            // }
             // console.log(domItems, localDataArr);
             localStorage.setItem('todos', JSON.stringify(localDataArr))
             

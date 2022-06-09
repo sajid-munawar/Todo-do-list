@@ -10,20 +10,18 @@ container.addEventListener('click', (e) => {
       const { id } = e.target.parentElement;
       if (e.target.parentElement.classList.contains('checked')) {
         localData[id].completed = true;
+        e.target.nextElementSibling.nextElementSibling.style.display = 'none';
+
         localStorage.setItem('todos', JSON.stringify(localData));
       } else if (!e.target.parentElement.classList.contains('checked')) {
         localData[id].completed = false;
+        e.target.nextElementSibling.style.textDecoration = 'none';
+        e.target.nextElementSibling.nextElementSibling.style.display = 'block';
         localStorage.setItem('todos', JSON.stringify(localData));
       }
     });
   }
 });
-
-// export const checkboxs = document.querySelectorAll(".checkbox");
-
-// checkboxs.forEach((c) => {
-//   c.
-// });
 
 const clearAll = () => {
   let localData = JSON.parse(localStorage.getItem('todos'));
@@ -34,5 +32,18 @@ const clearAll = () => {
   localStorage.setItem('todos', JSON.stringify(localData));
   updateTodo();
 };
+
+const localData = JSON.parse(localStorage.getItem('todos'));
+for (let i = 0; i < localData.length; i += 1) {
+  const domItems = document.querySelectorAll('.todo-item');
+  if (localData[i].completed === true) {
+    domItems[i].classList.add('checked');
+    domItems[i].lastChild.classList.add('trash');
+    domItems[
+      i
+    ].firstElementChild.nextElementSibling.nextElementSibling.style.display = 'none';
+    domItems[i].firstElementChild.setAttribute('checked', 'true');
+  }
+}
 
 export default clearAll;

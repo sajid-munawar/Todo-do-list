@@ -8,7 +8,7 @@ export const todoGenerate = ({ description, index }) => `
   <i class="fa-solid fa-ellipsis-vertical"></i>
   <i class="fa-solid fa-trash-can"></i></div>`;
 
-export const updateTodo = () => {
+const updateTodo = () => {
   const todosFromLocalStorage = JSON.parse(localStorage.getItem('todos'));
   if (todosFromLocalStorage) {
     dynamicTodos.innerHTML = todosFromLocalStorage.map((todo) => todoGenerate(todo)).join('');
@@ -110,4 +110,4 @@ export const addTodo = () => {
   }
 };
 
-export default updateTodo
+export default updateTodo;

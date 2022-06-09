@@ -57,22 +57,27 @@ export const updateTodo = () => {
   // Function to Delete todo
   const delTodo = () => {
     const trashs = document.querySelectorAll(".fa-trash-can");
-    trashs.forEach((trash,index) => {
+    trashs.forEach((trash) => {
       trash.addEventListener('click', (e) => {
         e.preventDefault();
         dynamicTodos.removeChild(e.target.parentElement)
         const localData = JSON.parse(localStorage.getItem('todos'))
-        const localDataArr = Array.from(localData)
-        for (let i = 0; i < localData.length; i += 1){
-          if (localData[i].index === +e.target.parentElement.id) {
+        let localDataArr = Array.from(localData)
+        let count=-1
+        for (let i = 0; i < localDataArr.length; i += 1){
+          if (localDataArr[i].index === +e.target.parentElement.id) {
             localDataArr.splice(i, 1)
-            // console.log(domItems,localDataArr);
-            // for (let i = 0; i < localDataArr.length; i += 1){
-            //   const domItems = document.querySelectorAll(".todo-item");
-            //   localDataArr[i].index = i;
-            //   domItems[i].id=i
-            // }
-            // console.log(domItems, localDataArr);
+            localDataArr = localDataArr.map((i) => {
+              return {
+                description: i.description,
+                completed: i.completed,
+                index: count += 1
+              }
+            });
+            const domItems = document.querySelectorAll(".todo-item");
+            for (let i = 0; i < domItems.length; i += 1){
+              domItems[i].id=i
+            }
             localStorage.setItem('todos', JSON.stringify(localDataArr))
             
           }

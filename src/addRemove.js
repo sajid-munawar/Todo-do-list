@@ -21,7 +21,6 @@ export const updateTodo = () => {
   checkboxs.forEach((c) => {
     c.addEventListener('click', () => {
       c.parentElement.classList.toggle('checked');
-      console.log(c.parentElement.id);
       c.nextElementSibling.classList.toggle('checkTodo');
       c.nextElementSibling.nextElementSibling.classList.toggle('doticon');
       c.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle('trash');
@@ -57,19 +56,29 @@ export const updateTodo = () => {
   editDesc();
   // Function to Delete todo
   const delTodo = () => {
+    console.log(todos);
     const trashs = document.querySelectorAll(".fa-trash-can");
     trashs.forEach((trash,index) => {
       trash.addEventListener('click', (e) => {
+        e.preventDefault();
         dynamicTodos.removeChild(e.target.parentElement)
         const localData = JSON.parse(localStorage.getItem('todos'))
         const localDataArr = Array.from(localData)
         for (let i = 0; i < localData.length; i += 1){
-          // console.log(localDataArr[i].index,+e.target.parentElement.id);
           if (localData[i].index === +e.target.parentElement.id) {
             localDataArr.splice(i, 1)
-            localStorage.setItem('todos',JSON.stringify(localDataArr))
+            // console.log(domItems,localDataArr);
+          }
+            for (let i = 0; i < localDataArr.length; i += 1){
+              const domItems = document.querySelectorAll(".todo-item");
+              localDataArr[i].index = i;
+              domItems[i].id=i
+            // console.log(domItems, localDataArr);
+            localStorage.setItem('todos', JSON.stringify(localDataArr))
+            
           }
         }
+        e.stopPropagation();
       })
     })
   }

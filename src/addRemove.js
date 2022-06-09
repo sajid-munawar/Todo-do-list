@@ -3,7 +3,7 @@ const dynamicTodos = document.querySelector('.dynamic-todos');
 
 export const todos = [];
 
-const todoGenerate = ({ description,index }) => `
+const todoGenerate = ({ description, index }) => `
    <div class="todo-item" id=${index}>
   <input  type="checkbox" class='checkbox'><span contenteditable="true"> ${description} </span>
   <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -27,65 +27,80 @@ export const updateTodo = () => {
     });
   });
 
-  //Function to edit description
-  const editDesc = () =>{
-    const spans = document.querySelectorAll("span");
+  // Function to edit description
+  const editDesc = () => {
+    const spans = document.querySelectorAll('span');
     spans.forEach((span) => {
-      span.addEventListener("click", (e) => {
-        e.target.classList.remove("focus");
+      span.addEventListener('click', (e) => {
+        e.target.classList.remove('focus');
       });
-      span.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-          e.target.parentElement.classList.add("edited");
+      span.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.target.parentElement.classList.add('edited');
         }
-        const localData = JSON.parse(localStorage.getItem("todos"));
+        const localData = JSON.parse(localStorage.getItem('todos'));
 
         for (let i = 0; i < spans.length; i += 1) {
-          if (spans[i].parentElement.classList.contains("edited")) {
+          if (spans[i].parentElement.classList.contains('edited')) {
             localData[i].description = e.target.textContent;
-            localStorage.setItem("todos", JSON.stringify(localData));
+            localStorage.setItem('todos', JSON.stringify(localData));
 
             window.getSelection().removeAllRanges();
           }
         }
-        e.target.parentElement.classList.remove("edited");
-        e.target.classList.add("focus");
+        e.target.parentElement.classList.remove('edited');
+        e.target.classList.add('focus');
       });
     });
-  }
+  };
   editDesc();
   // Function to Delete todo
   const delTodo = () => {
-    const trashs = document.querySelectorAll(".fa-trash-can");
+    const trashs = document.querySelectorAll('.fa-trash-can');
     trashs.forEach((trash) => {
       trash.addEventListener('click', (e) => {
         e.preventDefault();
-        dynamicTodos.removeChild(e.target.parentElement)
-        const localData = JSON.parse(localStorage.getItem('todos'))
-        let localDataArr = Array.from(localData)
-        let count=-1
-        for (let i = 0; i < localDataArr.length; i += 1){
-          if (localDataArr[i].index === +e.target.parentElement.id) {
-            localDataArr.splice(i, 1)
-            localDataArr = localDataArr.map((i) => {
-              return {
-                description: i.description,
-                completed: i.completed,
-                index: count += 1
-              }
-            });
-            const domItems = document.querySelectorAll(".todo-item");
-            for (let i = 0; i < domItems.length; i += 1){
-              domItems[i].id=i
-            }
-            localStorage.setItem('todos', JSON.stringify(localDataArr))
-            
+        let dindex= +e.target.parentElement.id
+        console.log(dindex);
+        dynamicTodos.removeChild(e.target.parentElement);
+        const localData = JSON.parse(localStorage.getItem('todos'));
+        let localDataArr = Array.from(localData);
+        let count = -1;
+        console.log(localDataArr);
+        for (let b = 0; b < localDataArr.length; b++){
+          if (localDataArr[b].index === dindex) {
+            localDataArr.splice(b,1)
+            console.log(localDataArr);
           }
         }
+        // for (let i = 0; i < localDataArr.length; i += 1) {
+          // console.log('a');
+          // if (localDataArr[i].index === dindex) {
+          //   localDataArr.splice(i, 1);
+          //   console.log(localDataArr);
+          // }
+                  for (let i = 0; i < localDataArr.length; i += 1) {
+                    localDataArr[i].index = i;
+                  }
+                  localStorage.setItem('todos', JSON.stringify(localDataArr));
+                      const domItems = document.querySelectorAll(".todo-item");
+                      for (let i = 0; i < domItems.length; i += 1) {
+                        domItems[i].id = i;
+                      }
+        // }
+        // localDataArr = localDataArr.map(i => {
+          //   return {
+            //     description: i.description,
+            //     completed: i.completed,
+            //     index: count+=1 ,
+            //   };
+            // });
+
+
         e.stopPropagation();
-      })
-    })
-  }
+      });
+    });
+  };
   delTodo();
 };
 updateTodo();

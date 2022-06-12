@@ -83,3 +83,16 @@ span {
 .checkbox {
   cursor: pointer;
 }
+
+.form-top {
+  display: flex;
+  align-items: center;
+}
+
+.form-top input {
+  width: 90%;
+}
+
+.form-top input:focus {
+  outline: none;
+}

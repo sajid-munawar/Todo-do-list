@@ -30,6 +30,10 @@ form {
 #add-task {
   border: none;
   padding: 2%;
+  width: 90%;
+}
+#add-task:focus {
+  outline: none;
 }
 
 input {
@@ -89,10 +93,4 @@ span {
   align-items: center;
 }
 
-.form-top input {
-  width: 90%;
-}
 
-.form-top input:focus {
-  outline: none;
-}

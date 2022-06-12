@@ -1,7 +1,8 @@
 import './style.css';
 import { addTodo } from './addRemove.js';
 import clearAll from './interactiveList.js';
-const enterItem = document.querySelector(".bi-arrow-return-left");
+
+const enterItem = document.querySelector('.bi-arrow-return-left');
 
 const form = document.querySelector('form');
 

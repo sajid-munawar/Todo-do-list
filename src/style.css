@@ -47,6 +47,7 @@ input {
   border: 1px solid lightgray;
   padding: 2%;
   font-size: 0.9rem;
+  cursor: pointer;
 }
 
 span {
@@ -55,10 +56,12 @@ span {
 
 .fa-trash-can {
   display: none;
+  cursor: pointer;
 }
 
 .checked {
   background: rgb(250 255 33 / 33%);
+  text-decoration: line-through;
 }
 
 .checkTodo {
@@ -75,4 +78,8 @@ span {
 
 .focus:focus {
   outline: none;
+}
+
+.checkbox {
+  cursor: pointer;
 }
